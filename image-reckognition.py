@@ -28,6 +28,7 @@ class ShapeDetector:
     def detect(self, contour):
         shape = "undefined"
         peri = int(cv2.arcLength(contour, True))
+        print(peri)
 
         # Dougles pecker algorithm
         contourApproximation = cv2.approxPolyDP(contour, 0.04, peri, True)
@@ -92,6 +93,7 @@ thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]
 cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                         cv2.CHAIN_APPROX_SIMPLE)
 cnts = imutils.grab_contours(cnts)
+print(cnts)
 
 sd = ShapeDetector()
 
