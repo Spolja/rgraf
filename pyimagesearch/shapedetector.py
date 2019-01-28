@@ -76,6 +76,7 @@ class ShapeDetector:
 
         # if the shape is a pentagon, it will have 5 vertices
         elif len(approx) == 5:
+            shape = "irregular pentagon"
             t1 = approx[0]
             t2 = approx[1]
             t3 = approx[2]
@@ -109,10 +110,11 @@ class ShapeDetector:
                 if minLength <= vectorT3T4_length <= maxLength:
                     if minLength <= vectorT4T5_length <= maxLength:
                         if minLength <= vectorT5T1_length <= maxLength:
-                            shape = "pentagon"
+                            shape = "regular pentagon"
 
         # if the shape is a hexagon, it will have 6 vertices
         elif len(approx) == 6:
+            shape = "irregular hexagon"
             t1 = approx[0]
             t2 = approx[1]
             t3 = approx[2]
@@ -151,10 +153,11 @@ class ShapeDetector:
                     if minLength <= vectorT4T5_length <= maxLength:
                         if minLength <= vectorT5T6_length <= maxLength:
                             if minLength <= vectorT6T1_length <= maxLength:
-                                shape = "hexagon"
+                                shape = "regular hexagon"
 
         # if the shape is a hexagon, it will have 7 vertices
         elif len(approx) == 7:
+            shape = "irregular heptagon"
             t1 = approx[0]
             t2 = approx[1]
             t3 = approx[2]
@@ -198,7 +201,7 @@ class ShapeDetector:
                         if minLength <= vectorT5T6_length <= maxLength:
                             if minLength <= vectorT6T7_length <= maxLength:
                                 if minLength <= vectorT7T1_length <= maxLength:
-                                    shape = "heptagon"
+                                    shape = "regular heptagon"
 
         # otherwise, we assume the shape is a circle
         else:
