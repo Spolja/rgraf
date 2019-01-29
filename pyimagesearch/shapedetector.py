@@ -14,6 +14,10 @@ def calculateDistanceBetweenTwoPoints(a, b):
     squared_y = math.pow(b[0][1] - a[0][1], 2)
     return math.sqrt(squared_x + squared_y)
 
+def calculateDistanceBetweenTwoPointsNormalArray(a, b):
+    squared_x = math.pow(b[0] - a[0], 2)
+    squared_y = math.pow(b[1] - a[1], 2)
+    return math.sqrt(squared_x + squared_y)
 
 def calculateVector(a, b):
     return [(b[0][0] - a[0][0]), (b[0][1] - a[0][1])]
@@ -206,8 +210,42 @@ class ShapeDetector:
         # otherwise, we assume the shape is a circle
         else:
             shape = "circle"
-            print(shape)
-            print(approx)
+            points = []
+            x_values = []
+            y_values = []
+
+            for t in approx:
+                points.append(t[0])
+
+            for t in points:
+                x_values.append(t[0])
+                y_values.append(t[1])
+
+            min_x = min(x_values)
+            max_x = max(x_values)
+
+            min_y = min(y_values)
+            max_y = max(y_values)
+
+            # rectangle bounding the circle
+            a = [min_x, min_y]
+            b = [max_x, min_y]
+            c = [max_x, max_y]
+            d = [min_x, max_y]
+
+            ab_len = calculateDistanceBetweenTwoPointsNormalArray(a, b)
+            ad_len = calculateDistanceBetweenTwoPointsNormalArray(a, d)
+            centerPoint = [(a[0] + (ab_len / 2)), (a[1] + (ad_len / 2))]
+
+            distance_to_center = calculateDistanceBetweenTwoPointsNormalArray(centerPoint, points[0])
+
+            #tolerating 10% deviation
+            deviation = distance_to_center * 0.05
+            for point in points:
+                distance = calculateDistanceBetweenTwoPointsNormalArray(centerPoint, point)
+
+                if distance - deviation < distance_to_center > distance + deviation:
+                    shape = "undefined"
 
         # return the name of the shape
         return shape
