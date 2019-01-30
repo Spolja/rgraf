@@ -15,7 +15,7 @@ ap.add_argument("-i", "--image", required=True,
                 help="path to the input image")
 ap.add_argument("-q", "--quiet",
                 action="store_false", dest="verbose", default=True,
-                help="don't print status messages to stdout")
+                help="doesn't wait for the input")
 args = vars(ap.parse_args())
 
 # load the image and resize it to a smaller factor so that

@@ -241,7 +241,7 @@ class ShapeDetector:
 
             distance_to_center = calculate_distance_between_two_points_normal_array(centerPoint, points[0])
 
-            # tolerating 10% deviation
+            # tolerating 5% deviation
             deviation = distance_to_center * 0.05
             for point in points:
                 distance = calculate_distance_between_two_points_normal_array(centerPoint, point)
