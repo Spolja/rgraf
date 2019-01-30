@@ -72,7 +72,7 @@ class ShapeDetector:
             ar = w / float(h)
 
             # a square will have an aspect ratio that is approximately equal to one, otherwise, the shape is a rectangle
-            if 80 < angle < 100:
+            if 87 < angle < 93:
                 shape = "square" if 0.95 <= ar <= 1.05 else "rectangle"
 
             print(approx)
